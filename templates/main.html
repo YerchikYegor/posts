@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .post {
+            margin-bottom: 10px;
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .content {
+            margin-bottom: 10px;
+        }
+
+        .content img {
+            width: 80%;
+        }
+
+        .description {
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        .like-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .like-button {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .like-button:checked {
+            background-color: #0056b3;
+        }
+
+        .like-button:before {
+            content: 'Лайк';
+        }
+
+        .like-button:checked:before {
+            content: 'Лайкнуто';
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+            }
+
+            .post {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for instagram in data %}
+        <div class="post">
+            <h1>{{instagram[1]}}</h1>
+            <div class="content"><img id="post_img" src="{{instagram[2]}}"></div>
+            <h3>{{instagram[3]}}</h3>
+            <div class="like-container">
+                <input type="checkbox" class="like-button" id="like{{instagram[0]}}">
+            </div>
+        </div>
+        {% endfor %}
+        <a href="http://127.0.0.1:5000/add/">Добавить новый пост</a>
+    </div>
+</body>
+</html>
